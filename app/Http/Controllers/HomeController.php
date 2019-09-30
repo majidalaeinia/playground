@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
@@ -24,5 +28,29 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * Return ajax-request view.
+     *
+     * @return Factory|View
+     */
+    public function ajaxRequest()
+    {
+        return view('ajax-request');
+    }
+
+
+    /**
+     * Apply ajax request.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function ajaxRequestPost(Request $request)
+    {
+        $input = $request->all();
+
+        return response()->json(['success'=>$input['name']]);
     }
 }

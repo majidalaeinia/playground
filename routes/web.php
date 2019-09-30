@@ -13,5 +13,9 @@
 
 Auth::routes();
 
-Route::get('/', 'SiteController@index');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'SiteController@index')->name('site.index');
+Route::get('/home', 'HomeController@index')->name('home.index');
+
+
+Route::get('ajax-request', 'HomeController@ajaxRequest')->name('ajax.get');
+Route::post('ajax-request', 'HomeController@ajaxRequestPost')->name('ajax.post');
